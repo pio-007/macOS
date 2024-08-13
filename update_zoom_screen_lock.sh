@@ -1,4 +1,13 @@
 #!/bin/sh
+
+## Introduction
+#The Zoom Version Checker Script is a shell script designed for macOS systems to automate the process of checking the installed version of the Zoom application and updating it if necessary. The script performs the following key functions:
+#1. **Checks if Zoom is Installed**: It verifies whether the Zoom application is present in the `/Applications` directory.
+#2. **Checks the Installed Version**: It retrieves the currently installed version of Zoom.
+#3. **Checks for a Newer Version**: It queries the Zoom server to determine if a newer version is available for download.
+#4. **Checks Lock Screen Status**: It ensures that the screen is unlocked before proceeding with the installation, preventing interruptions during the update process.
+#5. **Installs Zoom**: If a newer version is available and the application is not currently running, it downloads and installs the latest version of Zoom.
+
 function screenIsUnlock { [ "$(/usr/libexec/PlistBuddy -c "print :IOConsoleUsers:0:CGSSessionScreenIsLocked" /dev/stdin 2>/dev/null <<< "$(ioreg -n Root -d1 -a)")" != "true" ] && return 0 || return 1; }
 
 # Checking that it is installed
